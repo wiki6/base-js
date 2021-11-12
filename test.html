@@ -9,23 +9,10 @@
 </head>
 
 <body>
+    <div id="camera-video" class="camera-video"></div>
+
     <script src="./js/trtc.js"></script>
-    <script>
-        // v4.7.0 及其以上版本的 SDK
-        TRTC.checkSystemRequirements().then((checkResult) => {
-            // if (!checkResult.result) {
-            console.log('checkResult', checkResult.result, 'checkDetail', checkResult.detail);
-            // SDK 不支持当前浏览器，根据用户设备类型建议用户使用 SDK 支持的浏览器
-            // }
-        });
-        TRTC.getDevices()
-            .then(devices => {
-                devices.forEach(item => {
-                    console.log(item);
-                });
-            })
-            .catch(error => console.error('getDevices error observed ' + error));
-    </script>
+    <script src="./js/test/test.js"></script>
 </body>
 
 </html>

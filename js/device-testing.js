@@ -493,17 +493,7 @@ async function startDeviceConnect() {
 function getDevicesList() {
   // populate camera options
   TRTC.getCameras().then(devices => {
-    $('#camera-option').empty();
-    devices.forEach(device => {
-      if (!cameraId) {
-        // eslint-disable-next-line no-global-assign
-        cameraId = device.deviceId;
-      }
-      let div = $('<div></div>');
-      div.attr('id', device.deviceId);
-      div.html(device.label);
-      div.appendTo('#camera-option');
-    });
+    console.log(devices);
   });
 
   // populate microphone options
