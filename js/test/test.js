@@ -13,19 +13,19 @@ async function createLocalStream(constraints, container) {
 
 async function start() {
   let cameraDevices = await TRTC.getCameras();
+  console.log(cameraDevices);
 
-  cameraTestingResult.device = cameraDevices[0];
+  var device = cameraDevices[0];
   // 创建本地视频流
   await createLocalStream(
     {
       audio: false,
       video: true,
-      cameraId: cameraTestingResult.device.deviceId,
+      cameraId: device.deviceId,
     },
     "camera-video"
   );
 }
-
 
 /**
  * 判断是否展示弹窗
