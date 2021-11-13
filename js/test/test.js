@@ -43,15 +43,17 @@ async function start() {
     },
     "camera-video"
   );
+
+  localStream.resume();
 }
 
-localStream.on('error', error => {
-  const errorCode = error.getCode();
-  if (errorCode === 0x4043) {
-    // PLAY_NOT_ALLOWED,引导用户手势操作并调用 stream.resume 恢复音视频播放
-    localStream.resume()
-  }
-})
+// localStream.on('error', error => {
+//   const errorCode = error.getCode();
+//   if (errorCode === 0x4043) {
+//     // PLAY_NOT_ALLOWED,引导用户手势操作并调用 stream.resume 恢复音视频播放
+//     localStream.resume()
+//   }
+// })
 
 /**
  * 更新首页popover的option list
