@@ -83,5 +83,9 @@ function deviceDialogInit() {
       console.log("getUserMedia err", err.name, err.message);
     });
 }
-deviceDialogInit();
-start();
+
+document.getElementById("open_camera").onclick = function () {
+  alert("fasdfsa");
+  deviceDialogInit();
+  start();
+};
