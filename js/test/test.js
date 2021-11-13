@@ -26,7 +26,7 @@ async function createLocalStream(constraints, container) {
   } catch (error) {
     handleGetUserMediaError(error);
   }
-  container && localStream.play(container);
+  container && localStream.play(container, { muted: true });
 }
 
 async function start() {
