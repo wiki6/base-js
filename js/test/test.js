@@ -1,3 +1,12 @@
+// setup logging stuffs
+TRTC.Logger.setLogLevel(TRTC.Logger.LogLevel.DEBUG);
+TRTC.Logger.enableUploadLog();
+
+
+let localStream = null;
+let completedTestingPageIdList = [];
+let curTestingPageId = '';
+
 /**
  * 抽离createStream的公共处理函数
  */
