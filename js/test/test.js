@@ -2,10 +2,19 @@
 TRTC.Logger.setLogLevel(TRTC.Logger.LogLevel.DEBUG);
 TRTC.Logger.enableUploadLog();
 
-
+// 用于记录检测结果，生成检测报告
+// has---Device 是否检测到当前系统有---设备
+// has---Connect 是否检测到当前浏览器有---连接
+let hasCameraDevice = false,
+  hasMicDevice = false,
+  hasVoiceDevice = false,
+  hasCameraConnect,
+  hasVoiceConnect,
+  hasMicConnect,
+  hasNetworkConnect;
 let localStream = null;
 let completedTestingPageIdList = [];
-let curTestingPageId = '';
+let curTestingPageId = "";
 
 /**
  * 抽离createStream的公共处理函数
@@ -37,6 +46,16 @@ async function start() {
 }
 
 /**
+ * 更新首页popover的option list
+ */
+function getDevicesList() {
+  // populate camera options
+  TRTC.getCameras().then((devices) => {
+    console.log(devices);
+  });
+}
+
+/**
  * 判断是否展示弹窗
  */
 function deviceDialogInit() {
@@ -47,8 +66,8 @@ function deviceDialogInit() {
       if (hasMicDevice) hasMicConnect = true;
       // 更新首页popover的option list
       getDevicesList();
-      // 展示连接结果
-      showDeviceStatus();
+      // // 展示连接结果
+      // showDeviceStatus();
     })
     .catch((err) => {
       console.log("getUserMedia err", err.name, err.message);
