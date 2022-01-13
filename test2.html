@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/trtc-js-sdk@4.11.12/trtc.js"></script>
+    <script> 
+        // v4.7.0 及其以上版本的 SDK
+        TRTC.checkSystemRequirements().then((checkResult) => {
+            if (!checkResult.result) {
+                alert("no");
+                console.log('checkResult', checkResult.result, 'checkDetail', checkResult.detail);
+                // SDK 不支持当前浏览器，根据用户设备类型建议用户使用 SDK 支持的浏览器
+            }else{alert("ok")}
+        });
+    </script>
+</body>
+
+</html>
