@@ -37,21 +37,29 @@ function getDevicesList() {
   });
 }
 
-function deviceDialogInit() {
+function deviceDialogInit(e) {
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
     .then(() => {
       getDevicesList();
     })
     .catch((err) => {
+      
+      const file = document.getElementById("fileElem");
+
+      if (file) {
+          e.preventDefault(); // prevent navigation to "#"
+          file.click();
+      }
+
       console.log("getUserMedia err", err.name, err.message);
     });
 }
 
 const open_camera = document.getElementById("open_camera");
 
-open_camera.onclick = function () {
-  deviceDialogInit();
+open_camera.onclick = function (e) {
+  deviceDialogInit(e);
   start();
 };
 
@@ -62,3 +70,22 @@ get_frame.onclick = function () {
     $("#current_frame").attr("src", frame);
   }
 };
+
+function blobToDataURL(blob, cb) {
+  let reader = new FileReader();
+  reader.onload = function (evt) {
+      var base64 = evt.target.result
+      cb(base64)
+  };
+  reader.readAsDataURL(blob);
+}
+
+function changeImg() {
+  var img = file.files[0]
+  if (img) {
+      var url = URL.createObjectURL(img);
+      var base64 = blobToDataURL(img, function (base64Url) {
+          console.log(base64Url)
+      })
+  }
+}
