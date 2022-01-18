@@ -10,6 +10,13 @@ async function createLocalStream(constraints, container) {
   try {
     await localStream.initialize();
   } catch (error) {
+    console.log(error)
+    const file = document.getElementById("fileElem");
+
+    if (file) {
+        e.preventDefault(); // prevent navigation to "#"
+        file.click();
+    }
     // handleGetUserMediaError(error);
   }
   container && localStream.play(container, { muted: true });
@@ -43,15 +50,7 @@ function deviceDialogInit(e) {
     .then(() => {
       getDevicesList();
     })
-    .catch((err) => {
-      
-      const file = document.getElementById("fileElem");
-
-      if (file) {
-          e.preventDefault(); // prevent navigation to "#"
-          file.click();
-      }
-
+    .catch((err) => {    
       console.log("getUserMedia err", err.name, err.message);
     });
 }
