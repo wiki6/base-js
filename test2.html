@@ -19,6 +19,15 @@
                 // SDK 不支持当前浏览器，根据用户设备类型建议用户使用 SDK 支持的浏览器
             }else{alert("ok")}
         });
+
+        TRTC.getCameras().then(devices => {
+            cameras = devices;
+            devices.forEach(dev => {
+                console.log('camera label: ' + dev.label + ' deviceId: ' + dev.deviceId);
+            });
+
+            alert(JSON.stringify(devices));
+        });
     </script>
 </body>
 
